@@ -1,8 +1,11 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UsePipes, ValidationPipe } from '@nestjs/common';
+
+// TODO: fix issue with allias imports.
+import { TasksModel } from "../core/models/tasks/tasks.model";
 
 import { TasksService } from "./services";
-import { TasksModel } from "./models";
 import { GetTasksFilterDto, TaskDto } from "./dto";
+import { TaskStatusValidationPipe } from "./pipes";
 
 @Controller('tasks')
 export class TasksController {
@@ -10,7 +13,7 @@ export class TasksController {
   constructor(private _tasksService: TasksService) {}
 
   @Get()
-  public getTasks(@Query() filterDto: GetTasksFilterDto): TasksModel[] {
+  public getTasks(@Query(ValidationPipe) filterDto: GetTasksFilterDto): TasksModel[] {
     const queryParams = Object.keys(filterDto);
 
     if (queryParams.length) {
@@ -26,11 +29,12 @@ export class TasksController {
   }
 
   @Delete('/:id')
-  public deleteTask(@Param('id') id: string): boolean {
+  public deleteTask(@Param('id') id: string): void {
     return this._tasksService.deleteTask(id);
   }
 
   @Post()
+  @UsePipes(ValidationPipe)
   public createTask(@Body() createTaskDto: TaskDto): TasksModel {
     return this._tasksService.createTask(createTaskDto);
   }
@@ -38,7 +42,7 @@ export class TasksController {
   @Patch('/:id')
   public updateTask(
     @Param('id') id: string,
-    @Body() updateTaskDto: TaskDto,
+    @Body(TaskStatusValidationPipe) updateTaskDto: TaskDto,
   ): TasksModel {
     return this._tasksService.updateTask(id, updateTaskDto);
   }

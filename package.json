@@ -2,7 +2,7 @@
   "name": "nestjs-task-management",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": "Nikita Kovalev <nikita.kovalev.work@gmail.com>",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -24,6 +24,8 @@
     "@nestjs/common": "^7.0.0",
     "@nestjs/core": "^7.0.0",
     "@nestjs/platform-express": "^7.0.0",
+    "class-transformer": "^0.2.3",
+    "class-validator": "^0.12.2",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.5.4",
@@ -64,5 +66,7 @@
     },
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/nikitaKovalev/nestjs-task-management.git"
 }

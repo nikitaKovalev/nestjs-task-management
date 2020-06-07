@@ -9,10 +9,15 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
-    "incremental": true
+    "incremental": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "paths": {
+      "@core/models": ["src/core/models/index.ts"],
+      "@core/helpers": ["src/core/helpers/index.ts"],
+      "@core/utils": ["src/core/utils/index.ts"]
+    }
   },
-  "exclude": ["node_modules", "dist"],
-  "paths": {
-//    "core/models": ["src/core/models/index.ts"]
-  }
+  "exclude": ["node_modules", "dist"]
 }

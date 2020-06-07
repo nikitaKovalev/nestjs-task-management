@@ -1,8 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 
 import * as uuid from 'uuid';
 
-import { TasksModel } from "../models";
+// TODO: fix issue with allias imports.
+import { TasksModel } from "../../core/models/tasks/tasks.model";
+
 import { TaskStatusEnum } from "../enums";
 import { GetTasksFilterDto, TaskDto } from "../dto";
 
@@ -47,23 +49,27 @@ export class TasksService {
    * @return TasksModel
    * **/
   public getTaskById(id: string): TasksModel {
-    return this._tasksList.find((task: TasksModel) => task.id === id);
+    const foundedTask = this._tasksList.find((task: TasksModel) => task.id === id);
+
+    if (!foundedTask) {
+      throw new NotFoundException(`Task with ID: ${id} not found.`);
+    }
+
+    return foundedTask;
   }
 
   /**
    * DELETE Delete Task
    * @return Boolean
    * **/
-  public deleteTask(id: string): boolean {
+  public deleteTask(id: string): void {
     const index = this._tasksList.findIndex((task: TasksModel) => task.id === id);
 
     if (index !== -1) {
       this._tasksList.splice(index, 1);
-
-      return true;
+    } else {
+      throw new NotFoundException(`Task with ID: ${id} not found.`);
     }
-
-    return false;
   }
 
   /**
