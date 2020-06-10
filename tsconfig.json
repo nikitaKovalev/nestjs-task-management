@@ -10,13 +10,14 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "incremental": true,
-    "typeRoots": [
-      "node_modules/@types"
-    ],
     "paths": {
-      "@core/models": ["src/core/models/index.ts"],
-      "@core/helpers": ["src/core/helpers/index.ts"],
-      "@core/utils": ["src/core/utils/index.ts"]
+      "@core/models": ["src/core/models"],
+      "@core/services": ["src/core/services"],
+      "@core/enums": ["src/core/enums"],
+      "@core/dto": ["src/core/dto"],
+      "@core/pipes": ["src/core/pipes"],
+      "@core/helpers": ["src/core/helpers"],
+      "@core/utils": ["src/core/utils"]
     }
   },
   "exclude": ["node_modules", "dist"]

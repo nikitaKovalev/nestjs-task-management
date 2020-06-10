@@ -1,11 +1,9 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UsePipes, ValidationPipe } from '@nestjs/common';
 
-// TODO: fix issue with allias imports.
-import { TasksModel } from "../core/models/tasks/tasks.model";
-
-import { TasksService } from "./services";
-import { GetTasksFilterDto, TaskDto } from "./dto";
-import { TaskStatusValidationPipe } from "./pipes";
+import { TasksModel } from "@core/models";
+import { TasksService } from "@core/services";
+import { GetTasksFilterDto, TaskDto } from "@core/dto";
+import { TaskStatusValidationPipe } from "@core/pipes";
 
 @Controller('tasks')
 export class TasksController {
@@ -13,7 +11,8 @@ export class TasksController {
   constructor(private _tasksService: TasksService) {}
 
   @Get()
-  public getTasks(@Query(ValidationPipe) filterDto: GetTasksFilterDto): TasksModel[] {
+  @UsePipes(ValidationPipe)
+  public getTasks(@Query() filterDto: GetTasksFilterDto): TasksModel[] {
     const queryParams = Object.keys(filterDto);
 
     if (queryParams.length) {

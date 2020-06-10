@@ -1,4 +1,4 @@
-import { TaskStatusEnum } from "../../../tasks/enums";
+import { TaskStatusEnum } from "../../enums";
 
 export class TasksModel {
   public id: string;

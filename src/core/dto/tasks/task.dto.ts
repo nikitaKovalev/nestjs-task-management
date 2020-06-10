@@ -1,6 +1,6 @@
 import { IsNotEmpty } from "class-validator";
 
-import { TaskStatusEnum } from "../enums";
+import { TaskStatusEnum } from "../../enums";
 
 export class TaskDto {
   @IsNotEmpty()

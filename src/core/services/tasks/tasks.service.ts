@@ -2,11 +2,9 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 
 import * as uuid from 'uuid';
 
-// TODO: fix issue with allias imports.
-import { TasksModel } from "../../core/models/tasks/tasks.model";
-
-import { TaskStatusEnum } from "../enums";
-import { GetTasksFilterDto, TaskDto } from "../dto";
+import { TasksModel } from "../../models";
+import { TaskStatusEnum } from "../../enums";
+import { GetTasksFilterDto, TaskDto } from "../../dto";
 
 
 @Injectable()

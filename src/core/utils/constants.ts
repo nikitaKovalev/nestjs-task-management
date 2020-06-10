@@ -1,4 +1,4 @@
-import { TaskStatusEnum } from "../../tasks/enums";
+import { TaskStatusEnum } from "../enums";
 
 
 export const ALLOWED_TASKS: string[] = [

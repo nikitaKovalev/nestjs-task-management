@@ -1,8 +1,6 @@
 import { BadRequestException, Injectable, PipeTransform } from '@nestjs/common';
 
-// TODO: fix issue with allias imports.
-import { ALLOWED_TASKS } from "../../core/utils/constants";
-
+import { ALLOWED_TASKS } from "../utils";
 import { TaskDto } from "../dto";
 
 @Injectable()
